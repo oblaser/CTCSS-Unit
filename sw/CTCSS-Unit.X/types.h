@@ -1,26 +1,14 @@
 /*
 \author         Oliver Blaser
-\date           15.08.2021
+\date           21.09.2021
 \copyright      GNU GPLv3 - Copyright (c) 2021 Oliver Blaser
 */
 
 #ifndef IG_TYPES_H
 #define	IG_TYPES_H
 
+#include <stddef.h>
 #include <stdint.h>
-
-
-
-#ifndef __DEFINED_size_t
-typedef unsigned size_t;
-#define __DEFINED_size_t
-#endif
-#ifndef SIZE_T_MIN
-#define SIZE_T_MIN (0)
-#endif
-#ifndef SIZE_T_MAX
-#define SIZE_T_MAX ((size_t)-1)
-#endif
 
 
 

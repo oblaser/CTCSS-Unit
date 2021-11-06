@@ -1,6 +1,6 @@
 /*
 \author         Oliver Blaser
-\date           16.08.2021
+\date           06.11.2021
 \copyright      GNU GPLv3 - Copyright (c) 2021 Oliver Blaser
 */
 
@@ -40,7 +40,7 @@ void HW_init()
     // 5.0 Oscillator Module
     //--------------------------------
     
-    OSCCON = 0b01110010; // internal 8MHz
+    OSCCON = 0b01111010; // internal 16MHz
     
     //--------------------------------
     // 6.0 Reference Clock
@@ -52,10 +52,10 @@ void HW_init()
     // 8.0 Interrupts
     //--------------------------------
     
-    INTCON  = 0b01100000; // Peripheral Timer0
+    INTCON  = 0b01100000; // peripheral timer0
     PIE1    = 0b00000000;
     PIE2    = 0b00000000;
-    PIE3    = 0b00000000;
+    PIE3    = 0b00000010; // timer4
     
     //--------------------------------
     // 10.0 Watchdog Timer
@@ -115,19 +115,20 @@ void HW_init()
     // 20.0 Timer0
     //--------------------------------
     
-    OPTION_REG = 0b01010110; // WPU enabled / CS=Fosc/4 PS=1:128
+    OPTION_REG = 0b01010111; // WPU enabled / CS=Fosc/4 PS=1:256
     
     //--------------------------------
     // 21.0 Timer1
     //--------------------------------
     
-    T1CON = 0b00000001; // CS=Fosc/4 PS=1:1
-    TMR1H = 0x00;
-    TMR1L = 0x00;
+    T1CON = 0b00000000; // off
     
     //--------------------------------
     // 22.0 Timer2/4/6
     //--------------------------------
+    
+    T4CON = 0b00000100; // pre and post scaler 1:1 / timer on
+    PR4 = 0xFF; // PWM freq = 15.625 kHz
     
     // disabled by default, no changes needed
     
@@ -141,9 +142,9 @@ void HW_init()
     // 24.0 Capture/Compare/PWM
     //--------------------------------
     
-    CCP2CON = 0b00000000;
-    CCPR2H = 0xFF;
-    CCPR2L = 0xFF;
+    CCP2CON = 0b00001100; // PWM single output
+    CCPTMRS = 0b00000100; // CCP2 is based of timer 4
+    CCPR2L = 0;
     
     // disabled by default, no further changes needed
     

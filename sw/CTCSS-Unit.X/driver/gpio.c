@@ -8,7 +8,6 @@
 #include "gpio.h"
 
 
-#define PORTC_DISP_MASK (0x7F)
 
 void readInp(GPIO_inp_type* inp);
 
@@ -58,6 +57,7 @@ void GPIO_inpDetect(GPIO_input_t* inp)
     }
     else readInp(&inpOld);
 }
+
 
 
 typedef uint8_t debounceCntr_t;

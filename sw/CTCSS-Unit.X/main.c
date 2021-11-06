@@ -1,6 +1,6 @@
 /*
 \author         Oliver Blaser
-\date           15.08.2021
+\date           06.11.2021
 \copyright      GNU GPLv3 - Copyright (c) 2021 Oliver Blaser
 */
 
@@ -20,8 +20,8 @@ int main()
 {   
     HW_init();
     HW_wdtEnable();
-    
     GPIO_init();
+    CTCSS_init();
     
     HW_gieSet();
     
@@ -35,7 +35,7 @@ int main()
     
 #if PRJ_HWTEST
     
-    CTCSS_setTone(CTCSS_IDX_77_0);
+    CTCSS_setTone(CTCSS_ID_77_0);
     
     while(1)
     {
@@ -77,17 +77,19 @@ void __interrupt() global_isr()
     // ~10ms (9.984ms)
     if(T0IE && T0IF)
     {
-        TMR0_isr();
-        
         TMR0 = 100;
         T0IF = 0;
+        
+        APP_timeHandler();
+        CWLED_timeHandler();
     }
     
-    if(CCP2IE && CCP2IF)
+    if(TMR4IE && TMR4IF)
     {
-        TMR1H = 0x00;
-        TMR1L = 0x00;
-        CCP2IF = 0;
+        TMR4IF = 0;
+        
+        CCPR2L = CTCSS_lut[CTCSS_accumulator >> 8];
+        CTCSS_accumulator += CTCSS_increment;
     }
 }
 
@@ -112,10 +114,4 @@ void errorHandler(const TASK_status_t* ts)
             
         }
     }
-}
-
-void TMR0_isr()
-{
-    APP_timeHandler();
-    CWLED_timeHandler();
 }

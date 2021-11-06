@@ -1,6 +1,6 @@
 /*
 \author         Oliver Blaser
-\date           16.08.2021
+\date           06.11.2021
 \copyright      GNU GPLv3 - Copyright (c) 2021 Oliver Blaser
 */
 
@@ -9,101 +9,147 @@
 
 #include "../types.h"
 
-
-#define CTCSS_IDX_OFF       0
-#define CTCSS_IDX_67_0      1
-#define CTCSS_IDX_69_3      2
-#define CTCSS_IDX_71_9      3
-#define CTCSS_IDX_74_4      4
-#define CTCSS_IDX_77_0      5
-#define CTCSS_IDX_79_7      6
-#define CTCSS_IDX_82_5      7
-#define CTCSS_IDX_85_4      8
-#define CTCSS_IDX_88_5      9
-#define CTCSS_IDX_91_5     10
-#define CTCSS_IDX_94_8     11
-#define CTCSS_IDX_97_4     12
-#define CTCSS_IDX_100_0    13
-#define CTCSS_IDX_103_5    14
-#define CTCSS_IDX_107_2    15
-#define CTCSS_IDX_110_9    16
-#define CTCSS_IDX_114_8    17
-#define CTCSS_IDX_118_8    18
-#define CTCSS_IDX_123_0    19
-#define CTCSS_IDX_127_3    20
-#define CTCSS_IDX_131_8    21
-#define CTCSS_IDX_136_5    22
-#define CTCSS_IDX_141_3    23
-#define CTCSS_IDX_146_2    24
-#define CTCSS_IDX_151_4    25
-#define CTCSS_IDX_156_7    26
-#define CTCSS_IDX_159_8    27
-#define CTCSS_IDX_162_2    28
-#define CTCSS_IDX_165_5    29
-#define CTCSS_IDX_167_9    30
-#define CTCSS_IDX_171_3    31
-#define CTCSS_IDX_173_8    32
-#define CTCSS_IDX_177_3    33
-#define CTCSS_IDX_179_9    34
-#define CTCSS_IDX_183_5    35
-#define CTCSS_IDX_186_2    36
-#define CTCSS_IDX_189_9    37
-#define CTCSS_IDX_192_8    38
-#define CTCSS_IDX_196_6    39
-#define CTCSS_IDX_199_5    40
-#define CTCSS_IDX_203_5    41
-#define CTCSS_IDX_206_5    42
-#define CTCSS_IDX_210_7    43
-#define CTCSS_IDX_218_1    44
-#define CTCSS_IDX_225_7    45
-#define CTCSS_IDX_229_1    46
-#define CTCSS_IDX_233_6    47
-#define CTCSS_IDX_241_8    48
-#define CTCSS_IDX_250_3    49
-#define CTCSS_IDX_254_1    50
+typedef enum CTCSS_TONE_ID
+{
+    CTCSS_ID_OFF = 0,
+    CTCSS_ID_67_0,
+    CTCSS_ID_69_3,
+    CTCSS_ID_71_9,
+    CTCSS_ID_74_4,
+    CTCSS_ID_77_0,
+    CTCSS_ID_79_7,
+    CTCSS_ID_82_5,
+    CTCSS_ID_85_4,
+    CTCSS_ID_88_5,
+    CTCSS_ID_91_5,
+    CTCSS_ID_94_8,
+    CTCSS_ID_97_4,
+    CTCSS_ID_100_0,
+    CTCSS_ID_103_5,
+    CTCSS_ID_107_2,
+    CTCSS_ID_110_9,
+    CTCSS_ID_114_8,
+    CTCSS_ID_118_8,
+    CTCSS_ID_123_0,
+    CTCSS_ID_127_3,
+    CTCSS_ID_131_8,
+    CTCSS_ID_136_5,
+    CTCSS_ID_141_3,
+    CTCSS_ID_146_2,
+    CTCSS_ID_151_4,
+    CTCSS_ID_156_7,
+    CTCSS_ID_159_8,
+    CTCSS_ID_162_2,
+    CTCSS_ID_165_5,
+    CTCSS_ID_167_9,
+    CTCSS_ID_171_3,
+    CTCSS_ID_173_8,
+    CTCSS_ID_177_3,
+    CTCSS_ID_179_9,
+    CTCSS_ID_183_5,
+    CTCSS_ID_186_2,
+    CTCSS_ID_189_9,
+    CTCSS_ID_192_8,
+    CTCSS_ID_196_6,
+    CTCSS_ID_199_5,
+    CTCSS_ID_203_5,
+    CTCSS_ID_206_5,
+    CTCSS_ID_210_7,
+    CTCSS_ID_218_1,
+    CTCSS_ID_225_7,
+    CTCSS_ID_229_1,
+    CTCSS_ID_233_6,
+    CTCSS_ID_241_8,
+    CTCSS_ID_250_3,
+    CTCSS_ID_254_1
+} ctcss_id_t;
 
 // indexes for the 38 tone standard
-#define CTCSS_38T_1     CTCSS_IDX_67_0
-#define CTCSS_38T_2     CTCSS_IDX_71_9
-#define CTCSS_38T_3     CTCSS_IDX_74_4
-#define CTCSS_38T_4     CTCSS_IDX_77_0
-#define CTCSS_38T_5     CTCSS_IDX_79_7
-#define CTCSS_38T_6     CTCSS_IDX_82_5
-#define CTCSS_38T_7     CTCSS_IDX_85_4
-#define CTCSS_38T_8     CTCSS_IDX_88_5
-#define CTCSS_38T_9     CTCSS_IDX_91_5
-#define CTCSS_38T_10    CTCSS_IDX_94_8
-#define CTCSS_38T_11    CTCSS_IDX_97_4
-#define CTCSS_38T_12    CTCSS_IDX_100_0
-#define CTCSS_38T_13    CTCSS_IDX_103_5
-#define CTCSS_38T_14    CTCSS_IDX_107_2
-#define CTCSS_38T_15    CTCSS_IDX_110_9
-#define CTCSS_38T_16    CTCSS_IDX_114_8
-#define CTCSS_38T_17    CTCSS_IDX_118_8
-#define CTCSS_38T_18    CTCSS_IDX_123_0
-#define CTCSS_38T_19    CTCSS_IDX_127_3
-#define CTCSS_38T_20    CTCSS_IDX_131_8
-#define CTCSS_38T_21    CTCSS_IDX_136_5
-#define CTCSS_38T_22    CTCSS_IDX_141_3
-#define CTCSS_38T_23    CTCSS_IDX_146_2
-#define CTCSS_38T_24    CTCSS_IDX_151_4
-#define CTCSS_38T_25    CTCSS_IDX_156_7
-#define CTCSS_38T_26    CTCSS_IDX_162_2
-#define CTCSS_38T_27    CTCSS_IDX_167_9
-#define CTCSS_38T_28    CTCSS_IDX_173_8
-#define CTCSS_38T_29    CTCSS_IDX_179_9
-#define CTCSS_38T_30    CTCSS_IDX_186_2
-#define CTCSS_38T_31    CTCSS_IDX_192_8
-#define CTCSS_38T_32    CTCSS_IDX_203_5
-#define CTCSS_38T_33    CTCSS_IDX_210_7
-#define CTCSS_38T_34    CTCSS_IDX_218_1
-#define CTCSS_38T_35    CTCSS_IDX_225_7
-#define CTCSS_38T_36    CTCSS_IDX_233_6
-#define CTCSS_38T_37    CTCSS_IDX_241_8
-#define CTCSS_38T_38    CTCSS_IDX_250_3
+#define CTCSS_38T_1     CTCSS_ID_67_0
+#define CTCSS_38T_2     CTCSS_ID_71_9
+#define CTCSS_38T_3     CTCSS_ID_74_4
+#define CTCSS_38T_4     CTCSS_ID_77_0
+#define CTCSS_38T_5     CTCSS_ID_79_7
+#define CTCSS_38T_6     CTCSS_ID_82_5
+#define CTCSS_38T_7     CTCSS_ID_85_4
+#define CTCSS_38T_8     CTCSS_ID_88_5
+#define CTCSS_38T_9     CTCSS_ID_91_5
+#define CTCSS_38T_10    CTCSS_ID_94_8
+#define CTCSS_38T_11    CTCSS_ID_97_4
+#define CTCSS_38T_12    CTCSS_ID_100_0
+#define CTCSS_38T_13    CTCSS_ID_103_5
+#define CTCSS_38T_14    CTCSS_ID_107_2
+#define CTCSS_38T_15    CTCSS_ID_110_9
+#define CTCSS_38T_16    CTCSS_ID_114_8
+#define CTCSS_38T_17    CTCSS_ID_118_8
+#define CTCSS_38T_18    CTCSS_ID_123_0
+#define CTCSS_38T_19    CTCSS_ID_127_3
+#define CTCSS_38T_20    CTCSS_ID_131_8
+#define CTCSS_38T_21    CTCSS_ID_136_5
+#define CTCSS_38T_22    CTCSS_ID_141_3
+#define CTCSS_38T_23    CTCSS_ID_146_2
+#define CTCSS_38T_24    CTCSS_ID_151_4
+#define CTCSS_38T_25    CTCSS_ID_156_7
+#define CTCSS_38T_26    CTCSS_ID_162_2
+#define CTCSS_38T_27    CTCSS_ID_167_9
+#define CTCSS_38T_28    CTCSS_ID_173_8
+#define CTCSS_38T_29    CTCSS_ID_179_9
+#define CTCSS_38T_30    CTCSS_ID_186_2
+#define CTCSS_38T_31    CTCSS_ID_192_8
+#define CTCSS_38T_32    CTCSS_ID_203_5
+#define CTCSS_38T_33    CTCSS_ID_210_7
+#define CTCSS_38T_34    CTCSS_ID_218_1
+#define CTCSS_38T_35    CTCSS_ID_225_7
+#define CTCSS_38T_36    CTCSS_ID_233_6
+#define CTCSS_38T_37    CTCSS_ID_241_8
+#define CTCSS_38T_38    CTCSS_ID_250_3
+
+const uint8_t CTCSS_lut[] =
+{
+    127, 130, 133, 136, 139, 143, 146, 149,
+    152, 155, 158, 161, 164, 167, 170, 173,
+    176, 178, 181, 184, 187, 190, 192, 195,
+    198, 200, 203, 205, 208, 210, 212, 215,
+    217, 219, 221, 223, 225, 227, 229, 231,
+    233, 234, 236, 238, 239, 240, 242, 243,
+    244, 245, 247, 248, 249, 249, 250, 251,
+    252, 252, 253, 253, 253, 254, 254, 254,
+    254, 254, 254, 254, 253, 253, 253, 252,
+    252, 251, 250, 249, 249, 248, 247, 245,
+    244, 243, 242, 240, 239, 238, 236, 234,
+    233, 231, 229, 227, 225, 223, 221, 219,
+    217, 215, 212, 210, 208, 205, 203, 200,
+    198, 195, 192, 190, 187, 184, 181, 178,
+    176, 173, 170, 167, 164, 161, 158, 155,
+    152, 149, 146, 143, 139, 136, 133, 130,
+    127, 124, 121, 118, 115, 111, 108, 105,
+    102,  99,  96,  93,  90,  87,  84,  81,
+     78,  76,  73,  70,  67,  64,  62,  59,
+     56,  54,  51,  49,  46,  44,  42,  39,
+     37,  35,  33,  31,  29,  27,  25,  23,
+     21,  20,  18,  16,  15,  14,  12,  11,
+     10,   9,   7,   6,   5,   5,   4,   3,
+      2,   2,   1,   1,   1,   0,   0,   0,
+      0,   0,   0,   0,   1,   1,   1,   2,
+      2,   3,   4,   5,   5,   6,   7,   9,
+     10,  11,  12,  14,  15,  16,  18,  20,
+     21,  23,  25,  27,  29,  31,  33,  35,
+     37,  39,  42,  44,  46,  49,  51,  54,
+     56,  59,  62,  64,  67,  70,  73,  76,
+     78,  81,  84,  87,  90,  93,  96,  99,
+    102, 105, 108, 111, 115, 118, 121, 124
+};
+// octave script to calculate the look up table:
+// > x=[0:1:255];
+// > lut=round(sin((2*pi/256).*x)*127+127);
+// > csvwrite('lut.scite', lut)
 
 
-void CTCSS_setTone(uint8_t ctcssIdx);
+uint16_t CTCSS_accumulator;
+uint16_t CTCSS_increment;
+
+void CTCSS_init();
+void CTCSS_setTone(ctcss_id_t toneId);
 
 
 #endif // IG_CTCSS_H

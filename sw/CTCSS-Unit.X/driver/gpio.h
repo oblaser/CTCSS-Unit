@@ -35,6 +35,7 @@
 #endif
 #define GPIO_INP_BUTTON ((GPIO_inp_type)0x02)
 
+
 typedef uint8_t GPIO_inp_type;
 typedef struct
 {
@@ -43,8 +44,8 @@ typedef struct
     GPIO_inp_type falling; // falling edge
 } GPIO_input_t;
 
-void GPIO_init();
 
+void GPIO_init();
 void GPIO_inpDetect(GPIO_input_t* inp);
 
 #endif // IG_GPIO_H
