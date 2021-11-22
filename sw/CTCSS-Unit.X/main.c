@@ -47,6 +47,9 @@ int main()
         if(inp.falling & GPIO_INP_BUTTON)
         {
             GPIO_LED_PORT ^= GPIO_LED_PIN;
+            
+            if(GPIO_LED_PORT & GPIO_LED_PIN) CTCSS_setTone(CTCSS_ID_254_1);
+            else CTCSS_setTone(CTCSS_ID_77_0);
         }
     }
 #endif
