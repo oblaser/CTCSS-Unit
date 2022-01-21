@@ -1,5 +1,6 @@
 # gitignore for MPLAB X projects
-# based on https://microchipdeveloper.com/faq:72
+# https://microchipdeveloper.com/faq:72
+# https://microchipdeveloper.com/mplabx:version-control-working-with#files2save
 
 *.d
 *.lst
